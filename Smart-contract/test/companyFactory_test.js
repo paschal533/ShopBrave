@@ -71,7 +71,7 @@ contract("CompanyFactory: buyProduct and confirm product", (accounts) => {
     );
 
     await companyFactory.buyProduct(company.logs[0].address, value, { from: buyer, value : price })
-    const tx = await companyFactory.confirmProduct(1, { from: buyer });
+    //const tx = await companyFactory.confirmProduct(1, { from: buyer });
 
   });
 

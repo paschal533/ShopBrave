@@ -50,7 +50,7 @@ contract CompanyFactory {
     _pendingProducts[currentProductId].value = amount;
     _pendingProducts[currentProductId].confirmed = false;
     _pendingProducts[currentProductId].owner = msg.sender;
-    emit ProductBought(companyAddress, amount, currentId);
+    emit ProductBought(companyAddress, amount, currentProductId);
     return currentProductId;
   }
 
@@ -60,10 +60,12 @@ contract CompanyFactory {
     require(_pendingProducts[productId].owner == msg.sender, "Not the owner");
     require(_pendingProducts[productId].confirmed == false, "product has been confirmed");
     PendingProduct storage pendingProduct = _pendingProducts[productId];
-    uint balance = pendingProduct.value;
-    pendingProduct.companyAddress.call{value: balance}(
+    uint256 balance = pendingProduct.value;
+    (bool success, ) = pendingProduct.companyAddress.call{value: balance}(
        abi.encodeWithSignature("foo(string,uint256)", "call foo", 123)
     );
+
+    require(success, "Address: unable to send value, recipient may have reverted");
      
     pendingProduct.confirmed = true;
     emit ProductConfirmed(pendingProduct.companyAddress, pendingProduct.value, pendingProduct.productId);

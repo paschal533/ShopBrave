@@ -23,10 +23,10 @@ module.exports = {
       provider: function () {
         return new HDWalletProviderV2({
           privateKeys: [process.env.PrivateKey], // Adding the account private key used for sending transactions
-          providerOrUrl: `https://goerli.infura.io/v3/${process.env.INFURA_ProjectAPIKey}`, //Infura url with project API key
+          providerOrUrl: `https://goerli-rollup.arbitrum.io/rpc`, //Arbitrum goeli rpc
         });
       },
-      network_id: 5, // Goerli testnet networkId is 5
+      network_id: 421613, // Arbitrum Goerli testnet networkId is 5
       timeoutBlocks: 200,
       gas: 20000000,
     },
