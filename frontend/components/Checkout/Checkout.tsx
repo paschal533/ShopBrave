@@ -11,13 +11,8 @@ import { MdOutlineLocationOn, MdOutlinePayments } from "react-icons/md";
 import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import { BiWallet } from "react-icons/bi";
 import { FaCity } from "react-icons/fa";
-import { SendTokenTx } from "@/cadence/transactions/send_token";
 import { useFormik } from "formik";
 import { paymentValidate } from "../../lib/validate";
-import "../../flow/config";
-import * as fcl from "@onflow/fcl";
-//@ts-ignore
-import * as t from "@onflow/types";
 
 const Checkout = () => {
   const { user } = useSelector((state: any) => state.user);
@@ -34,10 +29,6 @@ const Checkout = () => {
   const [discountPrice, setDiscountPrice] = useState<Number>(0);
   const router = useRouter();
 
-  console.log(walletUser);
-
-  //@ts-ignore
-  useEffect(() => fcl?.currentUser.subscribe(setWalletUser), []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -82,10 +73,8 @@ const Checkout = () => {
         },
       };
 
-      const order = { transactionId };
-
       await axios
-        .post(`${server}/order/create-order`, order, config)
+        .post(`${server}/order/create-order`, config)
         .then((res) => {
           toast.success("Order successful!");
           localStorage.setItem("cartItems", JSON.stringify([]));
@@ -310,7 +299,6 @@ const ShippingInfo = ({ formik, walletUser }: any) => {
 
       {!walletUser.addr ? (
         <button
-          onClick={fcl.logIn}
           className="shadow-lg mt-8 font-bold text-md hover:scale-110 text-white ease-out duration-300 shadow-indigo-500/40 bg-[#0F282F] float-right p-2 pl-2 pr-2 flex justify-center space-x-2 items-center text-center rounded-xl"
         >
           <span className="mr-2">Connect your wallet</span>{" "}
@@ -318,7 +306,6 @@ const ShippingInfo = ({ formik, walletUser }: any) => {
         </button>
       ) : (
         <button
-          onClick={fcl.unauthenticate}
           className="shadow-lg mt-8 font-bold text-md hover:scale-110 text-white ease-out duration-300 shadow-indigo-500/40 bg-[#0F282F] float-right p-2 pl-2 pr-2 flex justify-center space-x-2 items-center text-center rounded-xl"
         >
           <span className="mr-2">Disconnect your wallet</span>{" "}
