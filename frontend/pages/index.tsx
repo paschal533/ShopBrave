@@ -6,7 +6,6 @@ import {
   Services,
   Banner,
 } from "@/components";
-import "../flow/config";
 
 export default function Home() {
   return (

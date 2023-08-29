@@ -10,7 +10,6 @@ import { loadSeller, loadUser } from "../redux/actions/user";
 import { getAllProducts } from "../redux/actions/product";
 import { ChakraProvider } from "@chakra-ui/react";
 import { extendTheme, type ThemeConfig } from "@chakra-ui/react";
-import "../flow/config";
 
 const config: ThemeConfig = {
   initialColorMode: "light",
