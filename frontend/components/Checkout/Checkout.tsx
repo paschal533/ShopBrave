@@ -53,24 +53,8 @@ const Checkout = () => {
     ) {
       toast.error("Please choose your delivery address!");
     } else {
-      const recipient = "0x7e60df042a9c0868";
 
-      const transactionId = await fcl
-        .send([
-          fcl.transaction(SendTokenTx),
-          fcl.args([
-            fcl.arg(totalPrice, t.String),
-            fcl.arg(recipient, t.Address),
-          ]),
-          fcl.payer(fcl.authz),
-          fcl.proposer(fcl.authz),
-          fcl.authorizations([fcl.authz]),
-          fcl.limit(9999),
-        ])
-        .then(fcl.decode);
-
-      console.log(transactionId);
-
+       
       const shippingAddress = {
         address1,
         address2,
@@ -108,7 +92,6 @@ const Checkout = () => {
           localStorage.setItem("latestOrder", JSON.stringify([]));
           window.location.reload();
         });
-      return fcl.tx(transactionId).onceSealed();
     }
   };
 
