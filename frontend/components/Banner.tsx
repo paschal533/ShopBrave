@@ -16,7 +16,7 @@ const Banner = () => {
             </h1>
             <p className="text-xl font-md">
               Multi-Vendor Ecommerce Dapp like no other, Buy and sell your
-              products easily using Flow token and wallet, no limits on what you
+              products easily using Arbitrum token, no limits on what you
               can do.
             </p>
             <div className="">

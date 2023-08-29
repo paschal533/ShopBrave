@@ -26,7 +26,7 @@ module.exports = {
           providerOrUrl: `https://goerli-rollup.arbitrum.io/rpc`, //Arbitrum goeli rpc
         });
       },
-      network_id: 421613, // Arbitrum Goerli testnet networkId is 5
+      network_id: 421613, // Arbitrum Goerli testnet networkId is 421613
       timeoutBlocks: 200,
       gas: 20000000,
     },
